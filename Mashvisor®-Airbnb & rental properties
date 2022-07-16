@@ -1,0 +1,25 @@
+# Source: https://rapidapi.com/mashvisor-team/api/mashvisor/
+# Overview: Airbnb & rental properties rates
+
+import requests
+
+# gets our website address
+url_mash = "https://mashvisor-api.p.rapidapi.com/rental-rates"
+
+# optional user choices to narrow search
+state_user = input('(optional)Select a State. Example "Louisiana = LA": ').upper()
+city_user = input('(optional)Select a city. Example "lafayette": ').lower()
+zipcode_user = input('(optional)Select a zipcode. Example "70507": ')
+
+# TODO: make a fuction that meets the users needs. if there is no no city, zip, etc.
+# source only two choices traditional or airbnb
+querystring = {"state": state_user, "source": "traditional", "city": city_user, "zip_code": zipcode_user}
+
+# APIs (will need to register for you own 
+headers = {
+    "X-RapidAPI-Key": "put you API here",
+    "X-RapidAPI-Host": "mashvisor-api.p.rapidapi.com"
+}
+
+# Call website for info
+response = requests.request("GET", url_mash, headers=headers, params=querystring)
