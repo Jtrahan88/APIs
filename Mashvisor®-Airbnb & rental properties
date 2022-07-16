@@ -1,6 +1,3 @@
-# Source: https://rapidapi.com/mashvisor-team/api/mashvisor/
-# Overview: Airbnb & rental properties rates
-
 import requests
 
 # gets our website address
