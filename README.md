@@ -18,5 +18,7 @@ This API will bring in smartsheets as a Dataframe into a jupyter notebook
 While these are "mostly" free some do start to cost after so many calls. becareful.
 
 # Mashvisor®-Airbnb & rental properties API set up
+* overview: compare Airbnb & rental properties
+* source: https://rapidapi.com/mashvisor-team/api/mashvisor/
 * Can only make 20 request per month on teh free version
 * it is .30 for each additonal request
