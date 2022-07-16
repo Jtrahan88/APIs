@@ -26,7 +26,7 @@ def usserChoice():
 
 
 
-# APIs
+# APIs (You will need to register for your own API)
 headers = {
     "X-RapidAPI-Key": "Put your API here",
     "X-RapidAPI-Host": "mashvisor-api.p.rapidapi.com"
