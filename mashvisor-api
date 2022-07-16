@@ -1,0 +1,37 @@
+# gets our website address
+url_mash = "https://mashvisor-api.p.rapidapi.com/rental-rates"
+
+state_user = input('Select a State. Example "Louisiana = LA": ')
+city_user = input('(optional)Select a city. Example "lafayette". Hit enter to leave blank: ').lower()
+zipcode_user = input('(optional)Select a zipcode. Example "70507". Hit enter to leave blank: ')
+
+
+# optional user choices to narrow search
+def usserChoice():
+    """Widens or narrows search area based on user choice"""
+
+    if zipcode_user != "" and city_user != "":
+        querystring = {"state": state_user, "source": "traditional", "city": city_user, "zip_code": zipcode_user}
+        return querystring 
+    elif zipcode_user == "" and city_user != "":
+        querystring= {"state": state_user, "source": "traditional", "city": city_user}
+        return querystring 
+    elif zipcode_user != "" and city_user == "":
+        querystring = {"state": state_user, "source": "traditional", "zip_code": zipcode_user}
+        return querystring 
+    else:
+        querystring={"state": state_user, "source": "traditional"}
+        return querystring
+ 
+
+
+
+# APIs (You will need to register for your own API)
+headers = {
+    "X-RapidAPI-Key": "Put your API here",
+    "X-RapidAPI-Host": "mashvisor-api.p.rapidapi.com"
+}
+
+# Call website for info
+querystring = usserChoice()
+response = requests.request("GET", url_mash, headers=headers, params=querystring)
