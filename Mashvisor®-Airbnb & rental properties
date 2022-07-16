@@ -1,22 +1,37 @@
-import requests
-
 # gets our website address
 url_mash = "https://mashvisor-api.p.rapidapi.com/rental-rates"
 
+state_user = input('Select a State. Example "Louisiana = LA": ')
+city_user = input('(optional)Select a city. Example "lafayette". Hit enter to leave blank: ').lower()
+zipcode_user = input('(optional)Select a zipcode. Example "70507". Hit enter to leave blank: ')
+
+
 # optional user choices to narrow search
-state_user = input('(optional)Select a State. Example "Louisiana = LA": ').upper()
-city_user = input('(optional)Select a city. Example "lafayette": ').lower()
-zipcode_user = input('(optional)Select a zipcode. Example "70507": ')
+def usserChoice():
+    """Widens or narrows search area based on user choice"""
 
-# TODO: make a fuction that meets the users needs. if there is no no city, zip, etc.
-# source only two choices traditional or airbnb
-querystring = {"state": state_user, "source": "traditional", "city": city_user, "zip_code": zipcode_user}
+    if zipcode_user != "" and city_user != "":
+        querystring = {"state": state_user, "source": "traditional", "city": city_user, "zip_code": zipcode_user}
+        return querystring 
+    elif zipcode_user == "" and city_user != "":
+        querystring= {"state": state_user, "source": "traditional", "city": city_user}
+        return querystring 
+    elif zipcode_user != "" and city_user == "":
+        querystring = {"state": state_user, "source": "traditional", "zip_code": zipcode_user}
+        return querystring 
+    else:
+        querystring={"state": state_user, "source": "traditional"}
+        return querystring
+ 
 
-# APIs (will need to register for you own 
+
+
+# APIs
 headers = {
-    "X-RapidAPI-Key": "put you API here",
+    "X-RapidAPI-Key": "98ed0e254fmsh16d908343acb65bp1a74d2jsn106ceef9f961",
     "X-RapidAPI-Host": "mashvisor-api.p.rapidapi.com"
 }
 
 # Call website for info
+querystring = usserChoice()
 response = requests.request("GET", url_mash, headers=headers, params=querystring)
